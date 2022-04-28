@@ -3,29 +3,79 @@
 <head>
   <meta charset="UTF-8">
   <title>New Relic's Code in the Dark</title>
+  <script src="assets/editor.js"></script>
   <style>
-    body {
-      background: white;
+    .reference-screenshot-container:not(.active) .reference-screenshot {
+      background-size: contain;
+      background-position: right;
+    }
+
+    .reference-screenshot-container.active,
+    .instructions-container,
+    .rules-container {
+      box-sizing: border-box;
+      background: rgb(0, 0, 0, 40%);
+      backdrop-filter: blur(5px);
+      padding: 100px;
+      cursor: pointer;
+    }
+    
+    .button-bar > button {
+      margin-left: 10px;
+    }
+
+    .show-rules .rules-container:after, 
+    .show-instructions .instructions-container:after,
+    .reference-screenshot-container.active:after {
+      content: 'X';
+      display: block;
+      position: absolute;
+      top: 32px;
+      color: white;
+      right: 32px;
+      font-size: 32px;
+    }
+
+    .result {
+      z-index: 99;
     }
   </style>
 </head>
-<body>
-<pre>
-Weclome to New Relic's Code in the Dark
-=======================================
 
---- The rules ---
-1) No previews - of either results or assets!
-2) Stay in the editor at all times
-3) No measurement tools
-4) Stop coding when the time is up
-5) After the round is over, press "Finish" and follow the prompt instructions to see your results
+<body class="show-rules">
+  <div class="background"></div>
+  <canvas class="canvas-overlay"></canvas>
+  <pre id="editor"></pre>
+  <div class="streak-container">
+    <div class="current">Combo</div>
+    <div class="counter">0</div>
+    <div class="bar"></div>
+    <div class="exclamations"></div>
+  </div>
+  <div class="reference-screenshot-container">
+    <span>Reference</span>
+    <div class="reference-screenshot" style="background-image:url(assets/animation.gif);"></div>
+  </div>
 
-Good luck and most important of all; have fun!
+  <div class="power-mode-indicator">
+    <h1>POWER MODE!</h1>
+  </div>
 
-You can now go to <a href="editor">the editor</a>.
+  <div class="instructions-container">
+    <iframe class="instructions" src="instructions.html"></iframe>
+  </div>
 
-</pre>
+  <div class="rules-container">
+    <iframe class="rules" src="rules.html"></iframe>
+  </div>
 
+  <div class="button-bar">
+    <button class="finish-button">Finish</button>
+    <button class="instructions-button">Resources</button>
+    <button class="rules-button">Rules</button>
+  </div>
+
+  <iframe class="result" src="result.html" frameborder="0"><iframe>
 </body>
+
 </html>
